@@ -1,3 +1,8 @@
+/**
+ * PT CIO Website - Main JavaScript File
+ * All functionality combined and optimized
+ */
+
 // ==================== GLOBAL UTILITIES ====================
 // Auto update copyright year
 document.addEventListener('DOMContentLoaded', function() {
@@ -317,6 +322,172 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// ==================== DOKUMENTASI CAROUSEL ====================
+// Simple and clean dokumentasi carousel
+document.addEventListener('DOMContentLoaded', function() {
+    const carouselElement = document.getElementById('dokumentasiCarousel');
+    
+    if (!carouselElement) {
+        console.warn('Elemen dokumentasiCarousel tidak ditemukan');
+        return;
+    }
+
+    // Destroy existing carousel instance if any
+    const existingInstance = bootstrap.Carousel.getInstance(carouselElement);
+    if (existingInstance) {
+        existingInstance.dispose();
+    }
+
+    // Inisialisasi carousel dengan konfigurasi optimal
+    const carousel = new bootstrap.Carousel(carouselElement, {
+        interval: 3000,        // Ganti slide setiap 3 detik
+        wrap: true,             // Loop terus menerus
+        touch: true,            // Support touch gesture
+        pause: 'hover',         // Pause saat hover
+        keyboard: true          // Support keyboard navigation
+    });
+
+    // Fullscreen modal functionality
+    const carouselImages = carouselElement.querySelectorAll('.carousel-img');
+    carouselImages.forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function() {
+            openFullscreenModal(this.src, this.alt);
+        });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        // Cek apakah carousel dalam viewport
+        const rect = carouselElement.getBoundingClientRect();
+        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (!isInViewport) return;
+
+        switch(e.key) {
+            case 'ArrowLeft':
+                e.preventDefault();
+                carousel.prev();
+                break;
+            case 'ArrowRight':
+                e.preventDefault();
+                carousel.next();
+                break;
+        }
+    });
+
+    // Auto play dengan kontrol hover
+    let isPaused = false;
+
+    // Pause saat mouse masuk
+    carouselElement.addEventListener('mouseenter', function() {
+        carousel.pause();
+        isPaused = true;
+    });
+
+    // Lanjutkan saat mouse keluar
+    carouselElement.addEventListener('mouseleave', function() {
+        carousel.cycle();
+        isPaused = false;
+    });
+
+    // Touch events untuk mobile
+    carouselElement.addEventListener('touchstart', function() {
+        carousel.pause();
+        isPaused = true;
+    });
+
+    carouselElement.addEventListener('touchend', function() {
+        setTimeout(() => {
+            carousel.cycle();
+            isPaused = false;
+        }, 3000);
+    });
+
+    // Visibility change (tab switch)
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            carousel.pause();
+        } else {
+            if (!isPaused) {
+                carousel.cycle();
+            }
+        }
+    });
+
+    // Swipe functionality untuk mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    carouselElement.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    carouselElement.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        
+        if (touchStartX - touchEndX > swipeThreshold) {
+            // Swipe left - next
+            carousel.next();
+        } else if (touchEndX - touchStartX > swipeThreshold) {
+            // Swipe right - prev
+            carousel.prev();
+        }
+    }
+
+    console.log('✅ Dokumentasi Carousel berjalan otomatis');
+});
+
+// ==================== FULLSCREEN MODAL FUNCTION ====================
+// Fullscreen Modal Function
+function openFullscreenModal(imageSrc, imageAlt) {
+    // Cek apakah modal sudah ada
+    let modal = document.getElementById('imageModalFullscreen');
+    
+    if (!modal) {
+        // Buat modal baru
+        modal = document.createElement('div');
+        modal.id = 'imageModalFullscreen';
+        modal.className = 'modal fade';
+        modal.tabIndex = '-1';
+        modal.setAttribute('aria-hidden', 'true');
+        modal.innerHTML = `
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header border-0 position-absolute top-0 end-0 z-3">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center justify-content-center p-0">
+                        <img src="${imageSrc}" alt="${imageAlt}" class="img-fluid" style="max-height: 90vh; max-width: 100%; object-fit: contain;">
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    } else {
+        // Update modal yang sudah ada
+        const modalImg = modal.querySelector('img');
+        if (modalImg) {
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+        }
+    }
+
+    // Inisialisasi dan tampilkan modal
+    const modalInstance = new bootstrap.Modal(modal);
+    modalInstance.show();
+
+    // Hapus modal dari DOM setelah ditutup
+    modal.addEventListener('hidden.bs.modal', function() {
+        modal.remove();
+    }, { once: true });
+}
+
 // ==================== ANIMATIONS & EFFECTS ====================
 // Parallax effect for hero section
 window.addEventListener('scroll', function() {
@@ -395,39 +566,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Counter animation for statistics (if needed)
-function animateCounter(element, target, duration) {
-    let start = 0;
-    const increment = target / (duration / 16);
-    const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-            element.textContent = target + '+';
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(start) + '+';
-        }
-    }, 16);
-}
-
-// Initialize counters if they exist
-document.addEventListener('DOMContentLoaded', function() {
-    const counters = document.querySelectorAll('.counter');
-    if (counters.length > 0) {
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.dataset.target);
-                    animateCounter(entry.target, target, 2000);
-                    counterObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        counters.forEach(counter => counterObserver.observe(counter));
-    }
-});
-
 // ==================== BACK TO TOP BUTTON ====================
 // Back to top button
 document.addEventListener('DOMContentLoaded', function() {
@@ -488,32 +626,48 @@ window.addEventListener('load', function() {
     
     // Add loaded class to body for transition effects
     document.body.classList.add('loaded');
+    
+    // Preload carousel images
+    const carouselElement = document.getElementById('dokumentasiCarousel');
+    if (carouselElement) {
+        preloadImages(carouselElement);
+    }
 });
+
+// Fungsi untuk preload images
+function preloadImages(carouselElement) {
+    const images = carouselElement.querySelectorAll('.carousel-img');
+    const imageUrls = Array.from(images).map(img => img.src);
+    
+    imageUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+    });
+}
 
 // Add preloader HTML if needed
 document.addEventListener('DOMContentLoaded', function() {
-    const preloaderHTML = `
-    <div class="preloader" style="
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-        transition: opacity 0.5s ease;
-    ">
-        <div class="spinner-border" style="width: 3rem; height: 3rem; color: var(--hijau-cio);" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-    </div>
-    `;
-
-    // Only add preloader if it doesn't exist
+    // Cek apakah preloader sudah ada
     if (!document.querySelector('.preloader')) {
+        const preloaderHTML = `
+        <div class="preloader" style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        ">
+            <div class="spinner-border" style="width: 3rem; height: 3rem; color: var(--hijau-cio);" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        `;
         document.body.insertAdjacentHTML('afterbegin', preloaderHTML);
     }
 });
@@ -522,332 +676,21 @@ document.addEventListener('DOMContentLoaded', function() {
 // Initialize Bootstrap tooltips
 document.addEventListener('DOMContentLoaded', function() {
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 
     // Initialize Bootstrap popovers
     const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-    const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    popoverTriggerList.map(function (popoverTriggerEl) {
         return new bootstrap.Popover(popoverTriggerEl);
     });
 });
 
-// ==================== DOKUMENTASI CAROUSEL ENHANCEMENT ====================
-// Main dokumentasi carousel function
-document.addEventListener('DOMContentLoaded', function() {
-    const dokumentasiCarousel = document.getElementById('dokumentasiCarousel');
-    
-    if (dokumentasiCarousel) {
-        // Inisialisasi Bootstrap Carousel
-        const carousel = new bootstrap.Carousel(dokumentasiCarousel, {
-            interval: 5000,
-            wrap: true,
-            touch: true,
-            pause: 'hover'
-        });
-        
-        // Tambah image counter
-        const carouselItems = dokumentasiCarousel.querySelectorAll('.carousel-item');
-        const totalImages = carouselItems.length;
-        
-        if (totalImages > 0) {
-            // Buat image counter
-            const imageCounter = document.createElement('div');
-            imageCounter.className = 'image-counter';
-            imageCounter.innerHTML = `<span id="currentImage">1</span> / ${totalImages}`;
-            dokumentasiCarousel.querySelector('.carousel-inner').appendChild(imageCounter);
-            
-            // Update counter saat slide
-            dokumentasiCarousel.addEventListener('slide.bs.carousel', function(event) {
-                const currentIndex = event.to + 1;
-                const currentImageElement = document.getElementById('currentImage');
-                if (currentImageElement) {
-                    currentImageElement.textContent = currentIndex;
-                }
-                
-                // Tambah animasi fade
-                const activeItem = carouselItems[event.to];
-                if (activeItem) {
-                    activeItem.classList.add('sliding');
-                    setTimeout(() => {
-                        activeItem.classList.remove('sliding');
-                    }, 800);
-                }
-            });
-        }
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            const documentationSection = document.getElementById('documentation');
-            if (documentationSection && documentationSection.contains(document.activeElement)) {
-                switch(e.key) {
-                    case 'ArrowLeft':
-                        carousel.prev();
-                        e.preventDefault();
-                        break;
-                    case 'ArrowRight':
-                        carousel.next();
-                        e.preventDefault();
-                        break;
-                    case 'Home':
-                        carousel.to(0);
-                        e.preventDefault();
-                        break;
-                    case 'End':
-                        carousel.to(totalImages - 1);
-                        e.preventDefault();
-                        break;
-                }
-            }
-        });
-        
-        // Fullscreen modal functionality
-        const carouselImages = dokumentasiCarousel.querySelectorAll('.carousel-img-fixed-height');
-        carouselImages.forEach(img => {
-            img.style.cursor = 'zoom-in';
-            
-            img.addEventListener('click', function() {
-                openFullscreenModal(this.src, this.alt);
-            });
-        });
-        
-        // Lazy loading untuk carousel images
-        const lazyImages = dokumentasiCarousel.querySelectorAll('img[loading="lazy"]');
-        if (lazyImages.length > 0) {
-            const lazyImageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const lazyImage = entry.target;
-                        
-                        // Tambah loading class
-                        lazyImage.classList.add('loading');
-                        
-                        // Simulasi loading
-                        setTimeout(() => {
-                            lazyImage.classList.remove('loading');
-                            lazyImage.classList.add('loaded');
-                            observer.unobserve(lazyImage);
-                        }, 300);
-                    }
-                });
-            }, {
-                rootMargin: '100px 0px',
-                threshold: 0.1
-            });
-            
-            lazyImages.forEach(lazyImage => {
-                lazyImageObserver.observe(lazyImage);
-            });
-        }
-        
-        // Auto-advance dengan manual control
-        let autoAdvanceInterval;
-        
-        function startAutoAdvance() {
-            autoAdvanceInterval = setInterval(() => {
-                carousel.next();
-            }, 5000);
-        }
-        
-        function stopAutoAdvance() {
-            clearInterval(autoAdvanceInterval);
-        }
-        
-        // Start auto-advance
-        startAutoAdvance();
-        
-        // Pause saat hover
-        dokumentasiCarousel.addEventListener('mouseenter', stopAutoAdvance);
-        dokumentasiCarousel.addEventListener('mouseleave', startAutoAdvance);
-        
-        // Pause saat touch untuk mobile
-        dokumentasiCarousel.addEventListener('touchstart', stopAutoAdvance);
-        dokumentasiCarousel.addEventListener('touchend', () => {
-            setTimeout(startAutoAdvance, 3000);
-        });
-        
-        // Swipe functionality untuk mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        dokumentasiCarousel.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        
-        dokumentasiCarousel.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-        
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            
-            if (touchStartX - touchEndX > swipeThreshold) {
-                // Swipe left - next
-                carousel.next();
-            } else if (touchEndX - touchStartX > swipeThreshold) {
-                // Swipe right - prev
-                carousel.prev();
-            }
-        }
-        
-        // Tambah caption overlay ke images
-        carouselItems.forEach((item, index) => {
-            const img = item.querySelector('img');
-            if (img) {
-                // Buat caption overlay
-                const captionOverlay = document.createElement('div');
-                captionOverlay.className = 'caption-overlay';
-                captionOverlay.innerHTML = `
-                    <div class="caption-content">
-                        <h6>Dokumentasi Pembangunan</h6>
-                        <p>Gambar ${index + 1} dari ${totalImages}</p>
-                    </div>
-                `;
-                item.appendChild(captionOverlay);
-            }
-        });
-        
-        // Tambah CSS untuk caption overlay
-        if (!document.querySelector('#caption-overlay-style')) {
-            const captionStyle = document.createElement('style');
-            captionStyle.id = 'caption-overlay-style';
-            captionStyle.textContent = `
-                .caption-overlay {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    background: linear-gradient(transparent, rgba(0,0,0,0.7));
-                    color: white;
-                    padding: 20px;
-                    transform: translateY(100%);
-                    transition: transform 0.3s ease;
-                    z-index: 5;
-                }
-                
-                .carousel-item:hover .caption-overlay {
-                    transform: translateY(0);
-                }
-                
-                .caption-content h6 {
-                    font-size: 0.9rem;
-                    margin: 0;
-                    color: var(--hijau-cio);
-                    font-weight: 600;
-                }
-                
-                .caption-content p {
-                    font-size: 0.8rem;
-                    margin: 5px 0 0 0;
-                    opacity: 0.8;
-                }
-                
-                .carousel-item.sliding {
-                    animation: slideFade 0.8s ease;
-                }
-                
-                @keyframes slideFade {
-                    0% { opacity: 0.7; }
-                    50% { opacity: 0.9; }
-                    100% { opacity: 1; }
-                }
-            `;
-            document.head.appendChild(captionStyle);
-        }
-        
-        // Export carousel controls untuk penggunaan eksternal
-        window.dokumentasiCarouselControls = {
-            next: function() {
-                carousel.next();
-            },
-            prev: function() {
-                carousel.prev();
-            },
-            goTo: function(index) {
-                carousel.to(index);
-            },
-            pause: function() {
-                carousel.pause();
-            },
-            cycle: function() {
-                carousel.cycle();
-            }
-        };
-    }
-});
-
-// ==================== FULLSCREEN MODAL FUNCTION ====================
-// Fullscreen Modal Function
-function openFullscreenModal(imageSrc, imageAlt) {
-    // Cek apakah modal sudah ada
-    let modal = document.getElementById('imageModalFullscreen');
-    
-    if (!modal) {
-        // Buat modal
-        modal = document.createElement('div');
-        modal.className = 'modal fade';
-        modal.id = 'imageModalFullscreen';
-        modal.tabIndex = '-1';
-        modal.innerHTML = `
-            <div class="modal-dialog modal-dialog-centered modal-fullscreen">
-                <div class="modal-content">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <div class="modal-body">
-                        <img src="${imageSrc}" alt="${imageAlt}" class="img-fluid" id="fullscreenImage">
-                    </div>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(modal);
-        
-        // Inisialisasi modal
-        const modalInstance = new bootstrap.Modal(modal);
-        
-        // Close dengan ESC
-        modal.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                modalInstance.hide();
-            }
-        });
-        
-        // Hapus dari DOM saat hidden
-        modal.addEventListener('hidden.bs.modal', function() {
-            modal.remove();
-        });
-        
-        modalInstance.show();
-        
-        // Update image saat modal ditampilkan
-        modal.addEventListener('shown.bs.modal', function() {
-            const fullscreenImage = document.getElementById('fullscreenImage');
-            if (fullscreenImage) {
-                fullscreenImage.src = imageSrc;
-                fullscreenImage.alt = imageAlt;
-            }
-        });
-    } else {
-        // Update modal yang sudah ada
-        const fullscreenImage = document.getElementById('fullscreenImage');
-        if (fullscreenImage) {
-            fullscreenImage.src = imageSrc;
-            fullscreenImage.alt = imageAlt;
-        }
-        
-        const modalInstance = bootstrap.Modal.getInstance(modal);
-        if (modalInstance) {
-            modalInstance.show();
-        } else {
-            new bootstrap.Modal(modal).show();
-        }
-    }
-}
-
 // ==================== INITIALIZATION ====================
 // Initialize all functions when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('PT CIO Website - Semua JavaScript telah diinisialisasi');
+    console.log('✅ PT CIO Website - Semua JavaScript siap');
 });
 
 // ==================== WINDOW LOAD EVENT ====================
@@ -855,14 +698,14 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('load', function() {
     // Cek apakah dokumentasi carousel berhasil diinisialisasi
     if (document.getElementById('dokumentasiCarousel')) {
-        console.log('Dokumentasi Carousel berhasil diinisialisasi');
+        console.log('✅ Dokumentasi Carousel berjalan otomatis');
     }
 });
 
 // ==================== ERROR HANDLING ====================
 // Global error handling
 window.addEventListener('error', function(e) {
-    console.error('JavaScript Error:', e.message);
+    console.error('❌ JavaScript Error:', e.message);
 });
 
 // ==================== RESPONSIVE HELPERS ====================

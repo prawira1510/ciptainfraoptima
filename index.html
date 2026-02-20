@@ -1693,41 +1693,130 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section py-5 bg-light">
+   <!-- Contact Section -->
+<section id="contact" class="contact-section py-5">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="contact-info">
-                    <h2 class="section-title text-start">Hubungi Kami</h2>
-                    <p>Kami siap membantu mewujudkan proyek konstruksi Anda. Hubungi kami untuk konsultasi dan penawaran.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Telepon</h4>
-                                <p>(+62) 8119722941</p>
+        <!-- Header Section (Judul di Tengah) -->
+        <div class="text-center mb-5">
+            <h2 class="section-title display-5 fw-bold">Hubungi Kami</h2>
+            <div class="divider-custom mx-auto"></div>
+            <p class="section-subtitle text-muted mt-3 mx-auto" style="max-width: 600px;">
+                Kami siap membantu mewujudkan proyek konstruksi Anda. 
+                Hubungi kami untuk konsultasi dan penawaran terbaik.
+            </p>
+        </div>
+
+        <!-- Contact Info Cards (Terpisah Kiri & Kanan) -->
+        <div class="row g-4 justify-content-center">
+            <!-- Kolom Kiri: Telepon & Email -->
+            <div class="col-lg-5">
+                <div class="contact-card-left p-4 p-lg-5 h-100">
+                    <div class="contact-subtitle mb-4">
+                        <span class="badge-contact">Informasi Kontak</span>
+                        <h3 class="mt-3 fw-semibold">Hubungi Langsung</h3>
+                        <p class="text-muted small">Silakan hubungi kami melalui kontak di bawah ini</p>
+                    </div>
+
+                    <!-- Telepon -->
+                    <div class="contact-item-wrapper mb-4">
+                        <div class="contact-item d-flex align-items-center p-3">
+                            <div class="contact-icon-circle me-3">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-content">
+                                <span class="contact-label text-uppercase small text-muted">Telepon</span>
+                                <h5 class="contact-value mb-0 fw-semibold">(+62) 811-9722-941</h5>
+                                <small class="text-muted">Senin - Sabtu, 08.00 - 17.00</small>
                             </div>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <p>cipta.infra.optima@gmail.com</p>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-item-wrapper mb-4">
+                        <div class="contact-item d-flex align-items-center p-3">
+                            <div class="contact-icon-circle me-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-content">
+                                <span class="contact-label text-uppercase small text-muted">Email</span>
+                                <h5 class="contact-value mb-0 fw-semibold">cipta.infra.optima</h5>
+                                <h5 class="contact-value fw-semibold">@gmail.com</h5>
+                                <small class="text-muted">Balasan dalam 1x24 jam</small>
                             </div>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Alamat Office</h4>
-                                <p>PT CIPTA INFRA OPTIMA<br>Jl. Rawamangun Muka Timur No.38, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur.</p>
+                    </div>
+
+                    <!-- Social Media (Opsional) -->
+                    <div class="social-media-section mt-5">
+                        <p class="small text-muted mb-2">Ikuti kami di:</p>
+                        <div class="social-icons d-flex gap-2">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kolom Kanan: Alamat & Jam Operasional -->
+            <div class="col-lg-5">
+                <div class="contact-card-right p-4 p-lg-5 h-100">
+                    <div class="contact-subtitle mb-4">
+                        <span class="badge-contact">Kantor & Operasional</span>
+                        <h3 class="mt-3 fw-semibold">Kunjungi Kantor Kami</h3>
+                        <p class="text-muted small">Datang langsung untuk konsultasi lebih lanjut</p>
+                    </div>
+
+                    <!-- Alamat Office -->
+                    <div class="contact-item-wrapper mb-4">
+                        <div class="contact-item d-flex p-3">
+                            <div class="contact-icon-circle me-3">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-content">
+                                <span class="contact-label text-uppercase small text-muted">Alamat Office</span>
+                                <h5 class="contact-value fw-semibold mb-2">PT CIPTA INFRA OPTIMA</h5>
+                                <p class="contact-address mb-0">
+                                    Jl. Rawamangun Muka Timur No.38<br>
+                                    Rawamangun, Kec. Pulo Gadung<br>
+                                    Kota Jakarta Timur, 13220
+                                </p>
+                                <a href="https://maps.google.com/?q=Jl. Rawamangun Muka Timur No.38 Jakarta" 
+                                   target="_blank" 
+                                   class="btn-map-link mt-2 d-inline-block small">
+                                    <i class="fas fa-map-pin me-1"></i>Buka di Google Maps
+                                </a>
                             </div>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <h4>Jam Operasional</h4>
-                                <p>Senin - Sabtu: 08.00 - 17.00 WIB<br>Minggu : Tutup atau Libur</p>
+                    </div>
+
+                    <!-- Jam Operasional -->
+                    <div class="contact-item-wrapper mb-4">
+                        <div class="contact-item d-flex align-items-center p-3">
+                            <div class="contact-icon-circle me-3">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-content w-100">
+                                <span class="contact-label text-uppercase small text-muted">Jam Operasional</span>
+                                
+                                <!-- Tabel Jam -->
+                                <div class="operational-hours mt-2">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="day">Senin - Sabtu</span>
+                                        <span class="hours fw-semibold">08.00 - 17.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="day">Minggu</span>
+                                        <span class="hours fw-semibold text-danger">Tutup / Libur</span>
+                                    </div>
+                                </div>
+
+                                <!-- Info Tambahan -->
+                                <div class="alert alert-light border mt-3 mb-0 py-2 px-3 small">
+                                    <i class="fas fa-info-circle text-info me-2"></i>
+                                    <span>Jam operasional dapat berubah pada hari libur nasional</span>
+                                </div>
                             </div>
                         </div>
                     </div>

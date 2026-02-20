@@ -35,7 +35,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== IMPROVED NAVBAR - HIJAU ===== */
+/* ===== NAVBAR - HIJAU ===== */
 .navbar {
     transition: all 0.3s ease;
     padding: 0.5rem 0;
@@ -66,17 +66,7 @@ body {
     transform: translateY(-2px);
 }
 
-.navbar-nav .nav-link::after {
-    display: none;
-    width: 0;
-}
-
-.navbar-nav .nav-link:hover::after,
-.navbar-nav .nav-link.active::after {
-    width: 80%;
-}
-
-/* Dropdown Menu Improvements */
+/* Dropdown Menu */
 .navbar-nav .dropdown-menu {
     border: none;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -109,7 +99,7 @@ body {
     }
 }
 
-/* ===== IMPROVED HERO SECTION - MOBILE CONTROLS FIX ===== */
+/* ===== HERO SECTION ===== */
 .hero-section {
     position: relative;
     height: 100vh;
@@ -173,7 +163,7 @@ body {
     font-weight: 300;
 }
 
-/* Desktop Controls (Samping) */
+/* Desktop Controls */
 .carousel-control-prev,
 .carousel-control-next {
     width: 70px;
@@ -208,7 +198,7 @@ body {
     border-color: var(--hijau-cio);
 }
 
-/* Mobile Controls (Bawah) */
+/* Mobile Controls */
 .carousel-controls-mobile {
     position: absolute;
     bottom: 20px;
@@ -324,26 +314,7 @@ section {
     text-align: center;
 }
 
-/* ===== JUDUL YANG HARUS DI TENGAH ===== */
-.video-section .section-title,
-.ongoing-projects .section-title,
-.clear-section .section-title,
-.projects-section .section-title,
-#documentation .section-title {
-    text-align: center !important;
-    display: block !important;
-    width: 100% !important;
-}
-
-.video-section .section-subtitle,
-.ongoing-projects .section-subtitle,
-.clear-section .section-subtitle,
-.projects-section .section-subtitle,
-#documentation .section-subtitle {
-    text-align: center !important;
-}
-
-/* ===== ABOUT SECTION - WARNA KHUSUS ===== */
+/* ===== ABOUT SECTION ===== */
 .about-section {
     background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%) !important;
     position: relative;
@@ -392,10 +363,6 @@ section {
     border-radius: 2px;
 }
 
-.about-section .section-title.text-start {
-    width: auto !important;
-}
-
 .about-image {
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
@@ -411,12 +378,8 @@ section {
 }
 
 @keyframes floatAbout {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
 
 .about-image:hover {
@@ -425,7 +388,7 @@ section {
     border-color: rgba(52, 152, 219, 0.5);
 }
 
-/* Teks dalam about section */
+/* Teks About */
 .about-section p.fw-bold {
     color: var(--kuning-about) !important;
     font-size: 1.3rem !important;
@@ -445,7 +408,7 @@ section {
     text-align: justify;
 }
 
-/* Container untuk ikon */
+/* Icon About */
 .icon-container {
     width: 70px;
     height: 70px;
@@ -461,7 +424,6 @@ section {
     margin-right: 15px;
 }
 
-/* Ikon dan item about - FIXED */
 .about-item {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
@@ -540,7 +502,7 @@ section {
     margin-top: 0.5rem;
 }
 
-/* Tombol khusus about section */
+/* Tombol About */
 .about-section .btn-outline-primary {
     color: var(--biru-about) !important;
     border-color: var(--biru-about) !important;
@@ -577,37 +539,17 @@ section {
     left: 0;
 }
 
-/* Efek partikel latar belakang about */
-.about-section::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle at 20% 80%, rgba(52, 152, 219, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(46, 204, 113, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(241, 196, 15, 0.05) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Konten di atas efek latar belakang */
-.about-section .container {
-    position: relative;
-    z-index: 1;
-}
-
-/* ===== INFRASTRUKTUR & GEDUNG SECTIONS ===== */
+/* ===== INFRASTRUKTUR, GEDUNG & SERVICES ===== */
 #infrastruktur-section,
-#gedung-section {
+#gedung-section,
+.services-section {
     position: relative;
     overflow: hidden;
 }
 
 #infrastruktur-section::before,
-#gedung-section::before {
+#gedung-section::before,
+.services-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -630,7 +572,7 @@ section {
     background-position: center;
     background-repeat: no-repeat;
     min-height: 260px;
-    color: var(--text-white);
+    color: var(--text-white) !important;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -671,6 +613,7 @@ section {
     justify-content: center;
     margin-bottom: 1.5rem;
     transition: all 0.4s ease;
+    z-index: 2;
 }
 
 .service-card:hover .service-icon {
@@ -682,23 +625,26 @@ section {
     color: white;
 }
 
-/* TEKS INFRASTRUKTUR & GEDUNG - WARNA PUTIH */
-.service-card h3 {
-    font-size: 1.6rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
+/* TEKS PUTIH UNTUK INFRASTRUKTUR, GEDUNG & SERVICES */
+.service-card h3,
+.service-card p,
+.service-card .card-title,
+.service-card .card-text {
     color: var(--text-white) !important;
     position: relative;
     z-index: 2;
 }
 
+.service-card h3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
 .service-card p {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--text-white) !important;
     margin-bottom: 0;
-    position: relative;
-    z-index: 2;
 }
 
 .service-card i {
@@ -706,21 +652,7 @@ section {
     color: #ffffff !important;
 }
 
-/* ===== SERVICES SECTION CENTERED ===== */
-.services-section .section-header {
-    text-align: center;
-}
-
-.services-section .service-card {
-    text-align: center;
-}
-
-.services-section .service-icon {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* ===== IMPROVED MARQUEE SECTION ===== */
+/* ===== MARQUEE SECTION ===== */
 .marquee-container {
     overflow-x: auto;
     white-space: nowrap;
@@ -739,18 +671,13 @@ section {
     padding: 0.5rem 0;
 }
 
-/* Pause saat hover */
 .marquee-container:hover .marquee-content {
     animation-play-state: paused;
 }
 
 @keyframes scroll-left {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 .image-card {
@@ -831,7 +758,7 @@ section {
     color: var(--text-dark) !important;
 }
 
-/* TOGGLE TEXT - WARNA HITAM */
+/* Toggle Button */
 .toggle-text {
     color: var(--text-dark) !important;
     font-weight: 600;
@@ -909,7 +836,7 @@ section {
     transform: scale(1.1);
 }
 
-/* ===== MODAL STYLES ===== */
+/* ===== MODAL ===== */
 .modal-content {
     border-radius: 20px;
     border: none;
@@ -969,15 +896,6 @@ section {
 }
 
 /* ===== VIDEO SECTION ===== */
-.video-section .section-title {
-    text-align: center !important;
-    width: 100% !important;
-}
-
-.video-section .section-subtitle {
-    text-align: center !important;
-}
-
 .video-card {
     border-radius: 15px;
     overflow: hidden;
@@ -1035,7 +953,7 @@ section {
     line-height: 1.8;
 }
 
-/* ===== CAROUSEL IMPROVEMENTS ===== */
+/* ===== CAROUSEL ===== */
 .carousel-img-fixed-height {
     height: 500px;
     object-fit: contain;
@@ -1073,7 +991,7 @@ section {
     transform: scale(1.3);
 }
 
-/* ===== BUTTON STYLES ===== */
+/* ===== BUTTONS ===== */
 .btn-primary {
     background-color: var(--hijau-cio) !important;
     border-color: var(--hijau-cio) !important;
@@ -1096,7 +1014,7 @@ section {
     color: white !important;
 }
 
-/* ===== IMPROVED CONTACT SECTION - VERSI TERBARU ===== */
+/* ===== CONTACT SECTION ===== */
 .contact-section {
     padding: 5rem 0;
     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
@@ -1104,7 +1022,6 @@ section {
     overflow: hidden;
 }
 
-/* Decorative Elements */
 .contact-section::before {
     content: '';
     position: absolute;
@@ -1127,7 +1044,6 @@ section {
     pointer-events: none;
 }
 
-/* Header Styles */
 .contact-section .section-title {
     color: var(--text-dark);
     position: relative;
@@ -1149,7 +1065,6 @@ section {
     margin-right: auto;
 }
 
-/* Contact Cards */
 .contact-card-left,
 .contact-card-right {
     background: white;
@@ -1167,7 +1082,6 @@ section {
     box-shadow: 0 30px 60px rgba(40, 167, 69, 0.15);
 }
 
-/* Card Left Specific */
 .contact-card-left {
     border-left: 5px solid var(--hijau-cio);
 }
@@ -1184,7 +1098,6 @@ section {
     pointer-events: none;
 }
 
-/* Card Right Specific */
 .contact-card-right {
     border-right: 5px solid var(--info-color);
 }
@@ -1201,7 +1114,6 @@ section {
     pointer-events: none;
 }
 
-/* Badge Contact */
 .badge-contact {
     display: inline-block;
     padding: 0.4rem 1rem;
@@ -1215,7 +1127,6 @@ section {
     border: 1px solid rgba(40, 167, 69, 0.2);
 }
 
-/* Contact Items */
 .contact-item-wrapper {
     transition: all 0.3s ease;
 }
@@ -1235,7 +1146,6 @@ section {
     transform: scale(1.02);
 }
 
-/* Contact Icon Circle */
 .contact-icon-circle {
     width: 60px;
     height: 60px;
@@ -1259,7 +1169,6 @@ section {
     color: white;
 }
 
-/* Contact Content */
 .contact-label {
     display: block;
     font-weight: 600;
@@ -1284,7 +1193,6 @@ section {
     line-height: 1.6;
 }
 
-/* Map Link Button */
 .btn-map-link {
     color: var(--hijau-cio);
     text-decoration: none;
@@ -1300,7 +1208,6 @@ section {
     padding-left: 5px;
 }
 
-/* Operational Hours */
 .operational-hours {
     background: white;
     padding: 1rem;
@@ -1321,7 +1228,6 @@ section {
     border-radius: 20px;
 }
 
-/* Alert Info */
 .alert-light {
     background: rgba(40, 167, 69, 0.03);
     border: 1px solid rgba(40, 167, 69, 0.1) !important;
@@ -1329,7 +1235,6 @@ section {
     color: var(--text-dark);
 }
 
-/* Social Media Icons */
 .social-icons {
     display: flex;
     gap: 0.8rem;
@@ -1357,7 +1262,7 @@ section {
     box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
 }
 
-/* ===== IMPROVED FOOTER ===== */
+/* ===== FOOTER ===== */
 .footer {
     background: var(--dark-color);
     color: white;
@@ -1472,19 +1377,14 @@ section {
 
 /* ===== ANIMATIONS ===== */
 @keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .floating {
     animation: float 3s ease-in-out infinite;
 }
 
-/* ===== LOADING ANIMATIONS ===== */
 .fade-in {
     animation: fadeIn 0.8s ease forwards;
 }
@@ -1499,6 +1399,34 @@ section {
         transform: translateY(0);
     }
 }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-card-left {
+    animation: fadeInUp 0.8s ease;
+}
+
+.contact-card-right {
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.contact-item-wrapper {
+    animation: fadeInUp 0.8s ease;
+    animation-fill-mode: both;
+}
+
+.contact-item-wrapper:nth-child(1) { animation-delay: 0.1s; }
+.contact-item-wrapper:nth-child(2) { animation-delay: 0.2s; }
+.contact-item-wrapper:nth-child(3) { animation-delay: 0.3s; }
 
 /* ===== CUSTOM SCROLLBAR ===== */
 ::-webkit-scrollbar {
@@ -1518,7 +1446,7 @@ section {
     background: var(--primary-dark);
 }
 
-/* ===== OPTIMASI DOKUMENTASI CAROUSEL ===== */
+/* ===== DOKUMENTASI CAROUSEL ===== */
 #documentation {
     background-color: #f8f9fa;
     position: relative;
@@ -1565,7 +1493,6 @@ section {
     color: var(--text-dark);
 }
 
-/* Carousel Container */
 #dokumentasiCarousel {
     max-width: 1000px;
     margin: 0 auto;
@@ -1576,7 +1503,6 @@ section {
     background: #fff;
 }
 
-/* Carousel Inner */
 #dokumentasiCarousel .carousel-inner {
     border-radius: 20px;
     background: #2c3e50;
@@ -1585,7 +1511,6 @@ section {
     align-items: center;
 }
 
-/* Carousel Items */
 #dokumentasiCarousel .carousel-item {
     transition: transform 1s ease, opacity 0.8s ease;
     background: linear-gradient(135deg, #2c3e50, #3498db);
@@ -1611,7 +1536,6 @@ section {
     }
 }
 
-/* Carousel Images */
 #dokumentasiCarousel .carousel-img {
     height: 500px;
     width: auto;
@@ -1633,7 +1557,6 @@ section {
     box-shadow: 0 15px 40px rgba(40, 167, 69, 0.2);
 }
 
-/* Carousel Controls */
 #dokumentasiCarousel .carousel-control-prev,
 #dokumentasiCarousel .carousel-control-next {
     width: 50px;
@@ -1675,7 +1598,6 @@ section {
     filter: brightness(0) invert(1);
 }
 
-/* Carousel Indicators */
 #dokumentasiCarousel .carousel-indicators {
     bottom: 20px;
     margin-bottom: 10px;
@@ -1723,7 +1645,6 @@ section {
     opacity: 0.3;
 }
 
-/* Image Counter */
 .carousel-image-counter,
 .image-counter {
     position: absolute;
@@ -1740,7 +1661,6 @@ section {
     border: 1px solid #28a745;
 }
 
-/* Loading Animation */
 .carousel-img.loading,
 .carousel-img-fixed-height.loading {
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
@@ -1753,7 +1673,6 @@ section {
     100% { background-position: -200% 0; }
 }
 
-/* Caption Overlay */
 .carousel-caption-custom,
 .caption-overlay {
     position: absolute;
@@ -1788,12 +1707,10 @@ section {
     margin: 5px 0 0 0;
 }
 
-/* Pause on Hover Effect */
 #dokumentasiCarousel:hover .carousel-item {
     animation-play-state: paused;
 }
 
-/* Smooth Transition */
 .carousel-fade .carousel-item {
     opacity: 0;
     transition-property: opacity;
@@ -1813,7 +1730,6 @@ section {
     opacity: 0;
 }
 
-/* Carousel Item Sliding Animation */
 .carousel-item.sliding {
     animation: slideFade 0.8s ease;
 }
@@ -1824,7 +1740,6 @@ section {
     100% { opacity: 1; }
 }
 
-/* Download Button */
 .download-btn {
     position: absolute;
     bottom: 20px;
@@ -1850,7 +1765,6 @@ section {
     box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
 }
 
-/* Modal for Fullscreen View */
 #imageModalFullscreen .modal-content {
     background: transparent;
     border: none;
@@ -1899,41 +1813,7 @@ section {
     transform: rotate(90deg);
 }
 
-/* Accessibility Improvements */
-#dokumentasiCarousel .carousel-control-prev:focus,
-#dokumentasiCarousel .carousel-control-next:focus {
-    outline: 3px solid var(--hijau-cio);
-    outline-offset: 3px;
-}
-
-#dokumentasiCarousel .carousel-indicators button:focus {
-    outline: 2px solid var(--hijau-cio);
-    outline-offset: 2px;
-}
-
-/* Print Styles */
-@media print {
-    #documentation {
-        page-break-inside: avoid;
-    }
-    
-    #dokumentasiCarousel .carousel-item:not(.active) {
-        display: none !important;
-    }
-    
-    #dokumentasiCarousel .carousel-control-prev,
-    #dokumentasiCarousel .carousel-control-next,
-    #dokumentasiCarousel .carousel-indicators {
-        display: none !important;
-    }
-    
-    .carousel-img-fixed-height {
-        max-height: 400px !important;
-        box-shadow: none !important;
-    }
-}
-
-/* ===== FIX FOR IMAGE DISPLAY ===== */
+/* ===== FIX IMAGE DISPLAY ===== */
 img {
     display: block;
     max-width: 100%;
@@ -1950,7 +1830,6 @@ img {
     opacity: 1 !important;
 }
 
-/* ===== CENTER CAROUSEL IMAGES ===== */
 .carousel-item.text-center {
     display: flex !important;
     align-items: center !important;
@@ -1961,7 +1840,7 @@ img {
     margin: 0 auto;
 }
 
-/* Pastikan controls desktop tidak muncul di mobile */
+/* Mobile Controls */
 @media (max-width: 767.98px) {
     .carousel-control-prev,
     .carousel-control-next {
@@ -1973,7 +1852,6 @@ img {
     }
 }
 
-/* Pastikan controls mobile tidak muncul di desktop */
 @media (min-width: 768px) {
     .carousel-controls-mobile {
         display: none !important;
@@ -1987,29 +1865,12 @@ img {
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1200px) {
-    .hero-title {
-        font-size: 3rem;
-    }
+    .hero-title { font-size: 3rem; }
+    .section-title { font-size: 2.2rem; }
+    .about-section .section-title { font-size: 2.5rem; }
+    .carousel-img-fixed-height { height: 450px; }
+    .carousel-controls-mobile { bottom: 15px; min-width: 230px; padding: 7px 18px; }
     
-    .section-title {
-        font-size: 2.2rem;
-    }
-    
-    .about-section .section-title {
-        font-size: 2.5rem;
-    }
-    
-    .carousel-img-fixed-height {
-        height: 450px;
-    }
-    
-    .carousel-controls-mobile {
-        bottom: 15px;
-        min-width: 230px;
-        padding: 7px 18px;
-    }
-    
-    /* Dokumentasi Responsive */
     #dokumentasiCarousel .carousel-item {
         min-height: 450px;
         padding: 30px;
@@ -2023,589 +1884,144 @@ img {
     #dokumentasiCarousel .carousel-inner {
         min-height: 450px;
     }
-
-    /* Contact Section Responsive */
-    .contact-section .row {
-        min-height: auto;
-    }
 }
 
 @media (max-width: 992px) {
-    .hero-title {
-        font-size: 2.5rem;
-    }
+    .hero-title { font-size: 2.5rem; }
+    .section-title { font-size: 2rem; }
+    .hero-content { padding: 2rem; max-width: 600px; margin-top: 70px; margin-bottom: 100px; }
+    .service-card { margin-bottom: 1.5rem; }
     
-    .section-title {
-        font-size: 2rem;
-    }
+    .footer-links, .footer-contact { text-align: center; }
+    .footer-links h4::after, .footer-contact h4::after { left: 50%; transform: translateX(-50%); }
     
-    .hero-content {
-        padding: 2rem;
-        max-width: 600px;
-        margin-top: 70px;
-        margin-bottom: 100px;
-    }
+    .about-section .section-title { font-size: 2.2rem; text-align: center !important; }
+    .about-section .section-title::after { left: 50%; transform: translateX(-50%); }
+    .about-image { margin-bottom: 2rem; max-height: 350px; }
+    .about-item { margin-bottom: 1.5rem; }
+    .icon-container { width: 60px; height: 60px; padding: 12px; }
+    .about-item .icon-about { width: 35px; height: 35px; }
+    .carousel-img-fixed-height { height: 400px; }
     
-    .service-card {
-        margin-bottom: 1.5rem;
-    }
+    .contact-card-left, .contact-card-right { margin-bottom: 2rem; }
+    .contact-card-right { margin-bottom: 0; }
     
-    .footer-links,
-    .footer-contact {
-        text-align: center;
-    }
+    .carousel-controls-mobile { bottom: 10px; min-width: 220px; padding: 6px 15px; }
+    .carousel-control-prev-mobile, .carousel-control-next-mobile { width: 45px; height: 45px; }
+    .carousel-control-prev-mobile i, .carousel-control-next-mobile i { font-size: 1.1rem; }
     
-    .footer-links h4::after,
-    .footer-contact h4::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
+    .image-card { min-width: 250px; margin: 0 6px; }
     
-    .about-section .section-title {
-        font-size: 2.2rem;
-        text-align: center !important;
-    }
-    
-    .about-section .section-title::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .about-image {
-        margin-bottom: 2rem;
-        max-height: 350px;
-    }
-    
-    .about-item {
-        margin-bottom: 1.5rem;
-    }
-    
-    .icon-container {
-        width: 60px;
-        height: 60px;
-        padding: 12px;
-    }
-    
-    .about-item .icon-about {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .carousel-img-fixed-height {
-        height: 400px;
-    }
-    
-    /* Contact Section Responsive */
-    .contact-card-left,
-    .contact-card-right {
-        margin-bottom: 2rem;
-    }
-    
-    .contact-card-right {
-        margin-bottom: 0;
-    }
-    
-    /* Mobile Controls Adjustments */
-    .carousel-controls-mobile {
-        bottom: 10px;
-        min-width: 220px;
-        padding: 6px 15px;
-    }
-    
-    .carousel-control-prev-mobile,
-    .carousel-control-next-mobile {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .carousel-control-prev-mobile i,
-    .carousel-control-next-mobile i {
-        font-size: 1.1rem;
-    }
-    
-    /* Marquee Responsive */
-    .image-card {
-        min-width: 250px;
-        margin: 0 6px;
-    }
-    
-    /* Dokumentasi Responsive */
-    #dokumentasiCarousel {
-        padding: 0 40px;
-    }
-    
-    #dokumentasiCarousel .carousel-item {
-        min-height: 400px;
-        padding: 25px;
-    }
-    
+    #dokumentasiCarousel { padding: 0 40px; }
+    #dokumentasiCarousel .carousel-item { min-height: 400px; padding: 25px; }
     #dokumentasiCarousel .carousel-img-fixed-height,
-    #dokumentasiCarousel .carousel-img {
-        height: 400px;
-        max-width: 95%;
-    }
-    
-    #dokumentasiCarousel .carousel-inner {
-        min-height: 400px;
-    }
-    
+    #dokumentasiCarousel .carousel-img { height: 400px; max-width: 95%; }
+    #dokumentasiCarousel .carousel-inner { min-height: 400px; }
     #dokumentasiCarousel .carousel-control-prev,
-    #dokumentasiCarousel .carousel-control-next {
-        width: 50px;
-        height: 50px;
-    }
-    
+    #dokumentasiCarousel .carousel-control-next { width: 50px; height: 50px; }
     #dokumentasiCarousel .carousel-control-prev-icon,
-    #dokumentasiCarousel .carousel-control-next-icon {
-        width: 20px;
-        height: 20px;
-        background-size: 20px 20px;
-    }
-    
-    #dokumentasiCarousel .carousel-indicators {
-        bottom: -50px;
-    }
+    #dokumentasiCarousel .carousel-control-next-icon { width: 20px; height: 20px; background-size: 20px 20px; }
+    #dokumentasiCarousel .carousel-indicators { bottom: -50px; }
 }
 
 @media (max-width: 768px) {
-    .hero-title {
-        font-size: 2rem;
-    }
+    .hero-title { font-size: 2rem; }
+    .section-title { font-size: 1.8rem; }
+    .hero-content { padding: 1.5rem; max-width: 90%; margin-top: 60px; margin-bottom: 80px; }
+    .hero-subtitle { font-size: 1.1rem; }
+    .image-card { min-width: 220px; margin: 0 5px; }
+    .image-card img { height: 160px; }
+    .navbar-nav .nav-link { padding: 0.5rem 0; }
+    .footer-about, .footer-links, .footer-contact { text-align: center; margin-bottom: 2rem; }
+    .social-links { justify-content: center; }
     
-    .section-title {
-        font-size: 1.8rem;
-    }
+    .about-section .section-title { font-size: 2rem; }
+    .about-section p.fw-bold { font-size: 1.1rem !important; }
+    .about-item { padding: 1.2rem; }
+    .icon-container { width: 50px; height: 50px; padding: 10px; margin-right: 12px; }
+    .about-item .icon-about { width: 30px; height: 30px; }
+    .carousel-img-fixed-height { height: 350px; max-width: 95%; }
     
-    .hero-content {
-        padding: 1.5rem;
-        max-width: 90%;
-        margin-top: 60px;
-        margin-bottom: 80px;
-    }
+    .contact-section { padding: 4rem 0; }
+    .contact-card-left, .contact-card-right { padding: 2rem !important; }
+    .contact-icon-circle { width: 50px; height: 50px; }
+    .contact-icon-circle i { font-size: 1.2rem; }
+    .contact-value { font-size: 1rem; }
+    .social-icon { width: 40px; height: 40px; }
     
-    .hero-subtitle {
-        font-size: 1.1rem;
-    }
+    .carousel-caption { left: 0; right: 0; bottom: 0; top: auto; padding-left: 5%; padding-bottom: 5%; text-align: left; }
+    .carousel-controls-mobile { bottom: 10px; min-width: 200px; padding: 5px 12px; }
+    .carousel-control-prev-mobile, .carousel-control-next-mobile { width: 40px; height: 40px; }
+    .carousel-control-prev-mobile i, .carousel-control-next-mobile i { font-size: 1rem; }
+    .carousel-indicators-mobile button { width: 10px; height: 10px; }
     
-    .image-card {
-        min-width: 220px;
-        margin: 0 5px;
-    }
-    
-    .image-card img {
-        height: 160px;
-    }
-    
-    .navbar-nav .nav-link {
-        padding: 0.5rem 0;
-    }
-    
-    .footer-about,
-    .footer-links,
-    .footer-contact {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
-    
-    .about-section .section-title {
-        font-size: 2rem;
-    }
-    
-    .about-section p.fw-bold {
-        font-size: 1.1rem !important;
-    }
-    
-    .about-item {
-        padding: 1.2rem;
-    }
-    
-    .icon-container {
-        width: 50px;
-        height: 50px;
-        padding: 10px;
-        margin-right: 12px;
-    }
-    
-    .about-item .icon-about {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .carousel-img-fixed-height {
-        height: 350px;
-        max-width: 95%;
-    }
-    
-    /* Contact Section Responsive */
-    .contact-section {
-        padding: 4rem 0;
-    }
-    
-    .contact-card-left,
-    .contact-card-right {
-        padding: 2rem !important;
-    }
-    
-    .contact-icon-circle {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .contact-icon-circle i {
-        font-size: 1.2rem;
-    }
-    
-    .contact-value {
-        font-size: 1rem;
-    }
-    
-    .social-icon {
-        width: 40px;
-        height: 40px;
-    }
-    
-    /* Mobile Controls Adjustments */
-    .carousel-caption {
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: auto;
-        padding-left: 5%;
-        padding-bottom: 5%;
-        text-align: left;
-    }
-    
-    .carousel-controls-mobile {
-        bottom: 10px;
-        min-width: 200px;
-        padding: 5px 12px;
-    }
-    
-    .carousel-control-prev-mobile,
-    .carousel-control-next-mobile {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .carousel-control-prev-mobile i,
-    .carousel-control-next-mobile i {
-        font-size: 1rem;
-    }
-    
-    .carousel-indicators-mobile button {
-        width: 10px;
-        height: 10px;
-    }
-    
-    /* Dokumentasi Responsive */
-    #documentation {
-        padding: 4rem 0;
-    }
-    
-    #dokumentasiCarousel {
-        padding: 0 20px;
-    }
-    
-    #dokumentasiCarousel .carousel-item {
-        min-height: 350px;
-        padding: 20px;
-    }
-    
+    #documentation { padding: 4rem 0; }
+    #dokumentasiCarousel { padding: 0 20px; }
+    #dokumentasiCarousel .carousel-item { min-height: 350px; padding: 20px; }
     #dokumentasiCarousel .carousel-img-fixed-height,
-    #dokumentasiCarousel .carousel-img {
-        height: 350px;
-        max-width: 100%;
-        border-radius: 10px;
-    }
-    
-    #dokumentasiCarousel .carousel-inner {
-        min-height: 350px;
-    }
-    
+    #dokumentasiCarousel .carousel-img { height: 350px; max-width: 100%; border-radius: 10px; }
+    #dokumentasiCarousel .carousel-inner { min-height: 350px; }
     #dokumentasiCarousel .carousel-control-prev,
-    #dokumentasiCarousel .carousel-control-next {
-        width: 45px;
-        height: 45px;
-    }
-    
-    #dokumentasiCarousel .carousel-control-prev {
-        left: 5px;
-    }
-    
-    #dokumentasiCarousel .carousel-control-next {
-        right: 5px;
-    }
-    
-    #dokumentasiCarousel .carousel-indicators {
-        bottom: -45px;
-    }
-    
-    #dokumentasiCarousel .carousel-indicators button {
-        width: 12px;
-        height: 12px;
-    }
-    
-    .download-btn {
-        bottom: 15px;
-        left: 15px;
-        padding: 6px 15px;
-        font-size: 0.8rem;
-    }
+    #dokumentasiCarousel .carousel-control-next { width: 45px; height: 45px; }
+    #dokumentasiCarousel .carousel-control-prev { left: 5px; }
+    #dokumentasiCarousel .carousel-control-next { right: 5px; }
+    #dokumentasiCarousel .carousel-indicators { bottom: -45px; }
+    #dokumentasiCarousel .carousel-indicators button { width: 12px; height: 12px; }
+    .download-btn { bottom: 15px; left: 15px; padding: 6px 15px; font-size: 0.8rem; }
 }
 
 @media (max-width: 576px) {
-    .hero-title {
-        font-size: 1.8rem;
-    }
+    .hero-title { font-size: 1.8rem; }
+    .section-title { font-size: 1.6rem; }
+    .hero-content { padding: 1.2rem; margin-top: 50px; margin-bottom: 70px; }
+    .hero-subtitle { font-size: 1rem; }
+    .service-icon { width: 60px; height: 60px; }
+    .service-icon i { font-size: 1.5rem; }
+    .footer { padding: 3rem 0 1.5rem; }
+    .about-section .section-title { font-size: 1.8rem; }
+    .about-section p:not(.fw-bold) { font-size: 1rem; }
+    .about-item span.fw-bold { font-size: 1.1rem; }
+    .about-item p.small { font-size: 0.9rem !important; }
+    .icon-container { width: 45px; height: 45px; padding: 8px; margin-right: 10px; }
+    .about-item .icon-about { width: 25px; height: 25px; }
+    .about-image { max-height: 300px; padding: 15px; }
+    .carousel-img-fixed-height { height: 300px; max-width: 100%; }
     
-    .section-title {
-        font-size: 1.6rem;
-    }
+    .marquee-container { padding: 0.8rem 0; }
+    .image-card { min-width: 180px; margin: 0 4px; }
+    .image-card img { height: 140px; }
+    .caption { padding: 8px; font-size: 0.85rem; }
     
-    .hero-content {
-        padding: 1.2rem;
-        margin-top: 50px;
-        margin-bottom: 70px;
-    }
+    .contact-card-left, .contact-card-right { padding: 1.5rem !important; border-radius: 20px; }
+    .contact-item { flex-direction: column; text-align: center; align-items: center !important; }
+    .contact-icon-circle { margin-right: 0 !important; margin-bottom: 1rem; }
+    .operational-hours .d-flex { flex-direction: column; text-align: center; gap: 0.5rem; }
+    .operational-hours .hours { display: inline-block; }
+    .social-icons { justify-content: center; }
     
-    .hero-subtitle {
-        font-size: 1rem;
-    }
+    .carousel-controls-mobile { min-width: 180px; padding: 4px 10px; border-radius: 40px; }
+    .carousel-control-prev-mobile, .carousel-control-next-mobile { width: 35px; height: 35px; }
+    .carousel-control-prev-mobile i, .carousel-control-next-mobile i { font-size: 0.9rem; }
+    .carousel-indicators-mobile { margin: 0 10px; gap: 8px; }
+    .carousel-indicators-mobile button { width: 8px; height: 8px; }
     
-    .service-icon {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .service-icon i {
-        font-size: 1.5rem;
-    }
-    
-    .footer {
-        padding: 3rem 0 1.5rem;
-    }
-    
-    .about-section .section-title {
-        font-size: 1.8rem;
-    }
-    
-    .about-section p:not(.fw-bold) {
-        font-size: 1rem;
-    }
-    
-    .about-item span.fw-bold {
-        font-size: 1.1rem;
-    }
-    
-    .about-item p.small {
-        font-size: 0.9rem !important;
-    }
-    
-    .icon-container {
-        width: 45px;
-        height: 45px;
-        padding: 8px;
-        margin-right: 10px;
-    }
-    
-    .about-item .icon-about {
-        width: 25px;
-        height: 25px;
-    }
-    
-    .about-image {
-        max-height: 300px;
-        padding: 15px;
-    }
-    
-    .carousel-img-fixed-height {
-        height: 300px;
-        max-width: 100%;
-    }
-    
-    /* Marquee Responsive */
-    .marquee-container {
-        padding: 0.8rem 0;
-    }
-    
-    .image-card {
-        min-width: 180px;
-        margin: 0 4px;
-    }
-    
-    .image-card img {
-        height: 140px;
-    }
-    
-    .caption {
-        padding: 8px;
-        font-size: 0.85rem;
-    }
-    
-    /* Contact Section Responsive */
-    .contact-card-left,
-    .contact-card-right {
-        padding: 1.5rem !important;
-        border-radius: 20px;
-    }
-    
-    .contact-item {
-        flex-direction: column;
-        text-align: center;
-        align-items: center !important;
-    }
-    
-    .contact-icon-circle {
-        margin-right: 0 !important;
-        margin-bottom: 1rem;
-    }
-    
-    .operational-hours .d-flex {
-        flex-direction: column;
-        text-align: center;
-        gap: 0.5rem;
-    }
-    
-    .operational-hours .hours {
-        display: inline-block;
-    }
-    
-    .social-icons {
-        justify-content: center;
-    }
-    
-    /* Mobile Controls Adjustments */
-    .carousel-controls-mobile {
-        min-width: 180px;
-        padding: 4px 10px;
-        border-radius: 40px;
-    }
-    
-    .carousel-control-prev-mobile,
-    .carousel-control-next-mobile {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .carousel-control-prev-mobile i,
-    .carousel-control-next-mobile i {
-        font-size: 0.9rem;
-    }
-    
-    .carousel-indicators-mobile {
-        margin: 0 10px;
-        gap: 8px;
-    }
-    
-    .carousel-indicators-mobile button {
-        width: 8px;
-        height: 8px;
-    }
-    
-    /* Dokumentasi Responsive */
-    #documentation {
-        padding: 3rem 0;
-    }
-    
-    #dokumentasiCarousel .carousel-item {
-        min-height: 300px;
-        padding: 15px;
-    }
-    
+    #documentation { padding: 3rem 0; }
+    #dokumentasiCarousel .carousel-item { min-height: 300px; padding: 15px; }
     #dokumentasiCarousel .carousel-img-fixed-height,
-    #dokumentasiCarousel .carousel-img {
-        height: 300px;
-        border-radius: 8px;
-    }
-    
-    #dokumentasiCarousel .carousel-inner {
-        min-height: 300px;
-    }
-    
+    #dokumentasiCarousel .carousel-img { height: 300px; border-radius: 8px; }
+    #dokumentasiCarousel .carousel-inner { min-height: 300px; }
     #dokumentasiCarousel .carousel-control-prev,
-    #dokumentasiCarousel .carousel-control-next {
-        width: 40px;
-        height: 40px;
-    }
-    
+    #dokumentasiCarousel .carousel-control-next { width: 40px; height: 40px; }
     #dokumentasiCarousel .carousel-control-prev-icon,
-    #dokumentasiCarousel .carousel-control-next-icon {
-        width: 18px;
-        height: 18px;
-        background-size: 18px 18px;
-    }
-    
-    #dokumentasiCarousel .carousel-indicators {
-        bottom: -40px;
-        gap: 6px;
-    }
-    
-    #dokumentasiCarousel .carousel-indicators button {
-        width: 10px;
-        height: 10px;
-    }
-    
-    .carousel-image-counter,
-    .image-counter {
-        bottom: 15px;
-        right: 15px;
-        padding: 4px 12px;
-        font-size: 0.8rem;
-    }
+    #dokumentasiCarousel .carousel-control-next-icon { width: 18px; height: 18px; background-size: 18px 18px; }
+    #dokumentasiCarousel .carousel-indicators { bottom: -40px; gap: 6px; }
+    #dokumentasiCarousel .carousel-indicators button { width: 10px; height: 10px; }
+    .carousel-image-counter, .image-counter { bottom: 15px; right: 15px; padding: 4px 12px; font-size: 0.8rem; }
 }
 
-/* Adjust height untuk mobile */
 @media (max-height: 700px) and (max-width: 768px) {
-    .hero-section {
-        min-height: 500px;
-        height: 100vh;
-    }
-    
-    .hero-img {
-        min-height: 500px;
-        height: 100vh;
-    }
-    
-    .hero-content {
-        padding: 1rem;
-        margin-top: 40px;
-        margin-bottom: 60px;
-    }
-    
-    .carousel-controls-mobile {
-        bottom: 8px;
-    }
+    .hero-section { min-height: 500px; height: 100vh; }
+    .hero-img { min-height: 500px; height: 100vh; }
+    .hero-content { padding: 1rem; margin-top: 40px; margin-bottom: 60px; }
+    .carousel-controls-mobile { bottom: 8px; }
 }
-
-/* Animations for Contact Section */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.contact-card-left {
-    animation: fadeInUp 0.8s ease;
-}
-
-.contact-card-right {
-    animation: fadeInUp 0.8s ease 0.2s both;
-}
-
-.contact-item-wrapper {
-    animation: fadeInUp 0.8s ease;
-    animation-fill-mode: both;
-}
-
-.contact-item-wrapper:nth-child(1) { animation-delay: 0.1s; }
-.contact-item-wrapper:nth-child(2) { animation-delay: 0.2s; }
-.contact-item-wrapper:nth-child(3) { animation-delay: 0.3s; }
